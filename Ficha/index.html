@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html id="html" data-bs-theme="dark">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ficha Mestre V.1.0</title>
+    <!-- V.1.0 -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!---->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--funcao para incluir o bootstrap-->
+</head>
+<!-- loadConfig(), -->
+
+<body onload=" temaLoad(),loadConfig()">
+    <script>
+        const temaLoad = () => {
+            if (localStorage.ModoEscuro == undefined) {
+                localStorage.ModoEscuro = 1;
+                // document.getElementById("fundoPreto").hidden = false;
+                // document.getElementById("fundoBranco").hidden = true;
+            }
+            //caso nao encontre o valor vai setar como se o usuario estivesse usando o tema padrao dark
+            //checa se o usuario ja esteve aqui e muda o tema de acordo com isso
+            if (localStorage.ModoEscuro == 0) {
+                //se existir ele ja vai trabalhar com o valor como normal
+                document.getElementById("html").setAttribute("data-bs-theme", "white");
+                //muda o tema
+                // document.getElementById("fundoPreto").hidden = true;
+                // document.getElementById("fundoBranco").hidden = false;
+            }
+            else if (localStorage.ModoEscuro == 1) {
+                //ve qual o valor anterior pra mudar corretamente
+                document.getElementById("html").setAttribute("data-bs-theme", "dark");
+                //muda o tema
+                // document.getElementById("fundoPreto").hidden = false;
+                // document.getElementById("fundoBranco").hidden = true;
+            }
+        }
+        const temaMudar = () => {
+            //muda o tema
+            //if (localStorage.tema) {
+            if (localStorage.ModoEscuro == 0) {
+                //se existir ele ja vai trabalhar com o valor como normal
+                localStorage.ModoEscuro = 1;
+                //seta o valor pro proximo clique
+                document.getElementById("html").setAttribute("data-bs-theme", "dark");
+                //muda o tema
+                // document.getElementById("fundoPreto").hidden = false;
+                // document.getElementById("fundoBranco").hidden = true;
+            }
+            else if (localStorage.ModoEscuro == 1) {
+                //ve qual o valor anterior pra mudar corretamente
+                localStorage.ModoEscuro = 0;
+                //muda o valor 
+                document.getElementById("html").setAttribute("data-bs-theme", "white");
+                //muda o tema
+                // document.getElementById("fundoPreto").hidden = true;
+                // document.getElementById("fundoBranco").hidden = false;
+            }
+        }
+    </script>
+    <!--nav bar-->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand text-reset start-0">Ficha Mestre</a>
+            <div class="end-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="btn btn-outline-secondary" onclick="temaMudar()">Tema</button>
+            </div>
+        </div>
+    </nav>
+    <!--nav bar-->
+    <!-- extencao da nav bar pra configuracao dos tipos de barras -->
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class=" p-4">
+            <h5 class="text-body-emphasis h4">Configuracoes</h5>
+            <!-- <span class="text-body-secondary">Toggleable via the navbar brand.</span> -->
+            <div class="container text-center" style="width: 36rem;">
+                <h5 style="height: max-content;">Configuracoes da primeira barra de progresso</h5>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Alterar Nome" id="NomeBarraN1">
+                    <input type="color" id="colorBarraN1" style="height: 31px;" value="#DC3545">
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN1')">Salvar</button>
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN1','true')">Visibilidade</button>
+                </div>
+            </div>
+            <div class="container text-center" style="width: 36rem;">
+                <h5 style="height: max-content;">Configuracoes da segunda barra de progresso</h5>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Alterar Nome" id="NomeBarraN3">
+                    <input type="color" id="colorBarraN3" style="height: 31px;" value="#0DCAF0">
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN3')">Salvar</button>
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN3','true')">Visibilidade</button>
+                </div>
+            </div>
+            <div class="container text-center" style="width: 36rem;">
+                <h5 style="height: max-content;">Configuracoes da terceira barra de progresso</h5>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Alterar Nome" id="NomeBarraN5">
+                    <input type="color" id="colorBarraN5" style="height: 31px;" value="#198754">
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN5')">Salvar</button>
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN5','true')">Visibilidade</button>
+                </div>
+            </div>
+            <div class="container text-center" style="width: 36rem;">
+                <h5 style="height: max-content;">Configuracoes da quarta barra de progresso</h5>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Alterar Nome" id="NomeBarraN7">
+                    <input type="color" id="colorBarraN7" style="height: 31px;" value="#A000C8">
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN7')">Salvar</button>
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN7','true')">Visibilidade</button>
+                </div>
+            </div>
+            <div class="container text-center" style="width: 36rem;">
+                <h5 style="height: max-content;">Configuracoes da quarta barra de progresso</h5>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Alterar Nome" id="NomeBarraN9">
+                    <input type="color" id="colorBarraN9" style="height: 31px;" value="#D4AF37">
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN9')">Salvar</button>
+                    <button class="btn btn-outline-secondary" onclick="Config('BarraN9','true')">Visibilidade</button>
+                </div>
+            </div>
+            <button onclick="deletar()" class="btn btn-outline-secondary" style="margin: 10px;">Apagar todos os dados
+                salvos</button>
+        </div>
+    </div>
+    <!-- extencao da nav bar pra configuracao dos tipos de barras -->
+    <!-- Inicio do toast -->
+    <div class="toast-container position-fixed translate-middle p-3 opacity-80"
+        style="position: absolute; cursor: move; left: 50%; top: 50%;" draggable="true" id="Toast">
+        <div id="liveToast" class="toast container" data-bs-autohide="false" role="alert" aria-live="assertive"
+            aria-atomic="true" draggable="true">
+            <div class="toast-header">
+                <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                <strong class="me-auto">Dados</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div id="caixaToast">
+                <div class="toast-body" id="display">
+                    Hello, world! This is a toast message.
+                </div>
+                <button onclick="undoTest()" class="btn btn-outline-secondary" id="useButton">Usar</button>
+                <!-- data-bs-dismiss="toast" -->
+                <div class="mt-2  toast-body pt-2 " data-bs-smooth-scroll="true" id="Extra"
+                    style="overflow-y: auto; max-height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Toast -->
+    <!-- Inicio Dado001 -->
+    <div class="container-fluid" style="padding-left: 5px;">
+        <div class="btn-group dropend">
+            <button class="btn btn-outline-secondary" type="button" id="Roll001" onclick="Dados()">Rolar</button>
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" onclick="SalvarDados('001')">Salvar</a></li>
+                <li><a class="dropdown-item" onclick="CarregarDados('001')">Carregar</a></li>
+                <li style="width: 18rem;">
+                    <div class="row" style="width: 100%; margin: 0;">
+                        <input type="text" class="form-control" placeholder="Nome" aria-label="Username"
+                            id="NomeRandom001">
+                        <div class="input-group" style="padding: 0; margin-bottom: 0;">
+                            <input type="text" class="form-control" placeholder="Quantidade" aria-label="Username"
+                                value="1" min="0" id="Quantidade001">
+                            <span class="input-group-text">d</span>
+                            <input type="text" class="form-control" placeholder="Valor" aria-label="Server" min="0"
+                                id="Valor001" value="20">
+                            <span class="input-group-text">
+                                /
+                            </span>
+                            <input type="text" class="form-control" placeholder="Modificador" aria-label="Server"
+                                id="Modificador001" value="0">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr class="divider">
+        </hr>
+    </div>
+    <input class="form-control" type="text" id="linhaComandoDado" placeholder="Uso de comandos de dados Ex.1d20+1">
+    <hr class="divider" style="margin-left: 5px; margin-right: 5px;">
+    </hr>
+    <script>
+        var inputTemporario = [];
+        function undoTest(usado) {
+            const botaoValor = event.target.value;
+            barra = [document.getElementsByClassName("input-BarraN1")];
+            barra.push(document.getElementsByClassName("input-BarraN3"));
+            barra.push(document.getElementsByClassName("input-BarraN5"));
+            barra.push(document.getElementsByClassName("input-BarraN7"));
+            barra.push(document.getElementsByClassName("input-BarraN9"));
+            for (i = 0; i < barra.length; i++) {
+                for (x = 0; x < barra[i].length; x++) {
+                    const botaoDiminuir = barra[i][x].nextElementSibling;
+                    const botaoAumentar = barra[i][x].nextElementSibling.nextElementSibling;
+                    const botaoMaxValor = barra[i][x].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.children[0].children[0];
+                    inputTemporario.push(barra[i][x].value);
+                    barra[i][x].value = botaoValor;
+                    //salva o valor anterior e troca ele pelo valor do botao
+                    botaoDiminuir.addEventListener("click", function () { returnItBack(); }, { once: true });
+                    botaoAumentar.addEventListener("click", function () { returnItBack(); }, { once: true });
+                    botaoMaxValor.addEventListener("click", function () { returnItBack(); }, { once: true });
+                }
+            }
+        }
+        function returnItBack() {
+            aux = 0;
+            for (i = 0; i < barra.length; i++) {
+                for (x = 0; x < barra[i].length; x++) {
+                    if (Number(inputTemporario[aux]) > 0) {
+                        barra[i][x].value = Number(inputTemporario[aux]);
+                    } else {
+                        barra[i][x].value = "";
+                    }
+                    aux++;
+                }
+                // volta os valores usando o array da funcao de cima
+            }
+        }
+        //function to drag and drop the toast any errors see here
+        dragElement(document.getElementById("Toast"));
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById("live" + elmnt.id)) {
+                // if present, the header is where you move the DIV from:
+                document.getElementById("live" + elmnt.id).onmousedown = dragMouseDown;
+            } else {
+                // otherwise, move the DIV from anywhere inside the DIV:
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+        //end of drag and drop toast
+        const textInput = document.getElementById('linhaComandoDado');
+        textInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                dadoComando();
+            }
+        });
+        function dadoComando() {
+            dadofinal = 0;
+            aux = event.target.value.split("d");
+            quantidade = aux[0];
+            valor = aux[1].split(/[+s,-]+/, 1);
+            soma = aux[1].slice(valor[0].length);
+            const extra = [];
+            try {
+                if (isNaN(quantidade) || isNaN(valor)) throw "Input invalido";
+                for (i = 1; i <= Number(quantidade); i++) {
+                    aux = getRandomIntInclusive(Number(valor))
+                    dadofinal += aux;
+                    extra.push(aux);
+                }
+            }
+            catch (erro) {
+                alert("Houve um erro, se voce tem meu contato me manda print (lag/kaleb): " + erro);
+            }
+            a = dadofinal + soma;
+            final = eval(a);
+            extra.sort(function (a, b) { return b - a });
+            toastDisplay.innerText = final + "⟵[" + dadofinal + "]" + event.target.value;
+            toastUseButton.value = final;
+            toastExtra.innerText = arrayPrint(extra);
+            function arrayPrint(extra) {
+                let x = 0;
+                for (i = 0; i < extra.length; i++) {
+                    if (i == 0) {
+                        x = extra[i];
+                    } else if (i > 0) {
+                        x += ", " + extra[i];
+                    }
+                }
+                return x;
+            };
+            if (dadofinal == quantidade * valor) {
+                toastLoader("max")
+            } else if (dadofinal == quantidade) {
+                toastLoader("min")
+            } else {
+                toastLoader();
+            }
+        }
+        //  codigo do toast 
+        const toastLiveExample = document.getElementById('liveToast');
+        const toastCaixa = document.getElementById("caixaToast");
+        const toastDisplay = document.getElementById("display");
+        const toastUseButton = document.getElementById("useButton");
+        const toastExtra = document.getElementById("Extra");
+
+        const toastLoader = (event) => {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastBootstrap.show();
+            switch (event) {
+                case ("max"):
+                    //max rolagem evento
+                    toastCaixa.style.backgroundColor = "#35DB5A";
+                    toastCaixa.style.color = "black";
+                    break
+                case ("min"):
+                    //min rolagem evento
+                    toastCaixa.style.backgroundColor = "#DC3545";
+                    toastCaixa.style.color = "black";
+                    break
+                default:
+                    //evento padrao caso nenhum seja chamado
+                    toastCaixa.style.backgroundColor = "unset";
+                    toastCaixa.style.color = "unset";
+            }
+        }
+        // gerador de numeros aleatorios
+        function getRandomIntInclusive(max) {
+            const minCeiled = Math.ceil(1);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+        }
+        // resquicios do programa de dados em caixa
+        /*
+        const Dados = () => {
+            const botao = event.target;
+            toastCaixa.style.backgroundColor = "unset";
+            toastCaixa.style.color = "unset";
+            $Quantidade = document.getElementById("Quantidade" + lugar).value;
+            $valor = document.getElementById("Valor" + lugar).value;
+            $modificador = document.getElementById("Modificador" + lugar).value;
+            aux = 0;
+            const arr = [];
+            for (i = 1; i <= $Quantidade; i++) {
+                arr.push(getRandomIntInclusive($valor));
+                aux = aux + arr[i - 1];
+            }
+            // console.log(arr);
+            if ($modificador == 0 || $modificador == null || $modificador == undefined) {
+                toastDisplay.innerText = aux;
+            } else {
+                toastDisplay.innerText = aux + " + " + $modificador + " = " + (aux + + $modificador);
+            }
+            toastExtra.innerText = arr;
+            if (aux == ($Quantidade * $valor)) {
+                toastCaixa.style.backgroundColor = "#35DB5A";
+                toastCaixa.style.color = "black";
+            } else if (aux == $Quantidade) {
+                toastCaixa.style.backgroundColor = "#DC3545";
+                toastCaixa.style.color = "black";
+            }
+        }
+            */
+        /*
+         const CarregarDados = (lugar) => {
+             valormaximo = 1;
+             for (i = 1; i <= valormaximo; i++) {
+                 document.getElementById('NomeRandom' + lugar).value = localStorage.getItem('NomeRandom' + lugar);
+                 document.getElementById('Roll' + lugar).innerText = localStorage.getItem('NomeRandom' + lugar);
+                 document.getElementById('Quantidade' + lugar).value = localStorage.getItem('Quantidade' + lugar);
+                 document.getElementById('Modificador' + lugar).value = localStorage.getItem('Modificador' + lugar);
+                 document.getElementById('Valor' + lugar).value = localStorage.getItem('Valor' + lugar);
+             }
+         }*/
+    </script>
+    <!-- fim do codigo do toast -->
+    <button onclick="showContent()" class="btn btn-outline-secondary" style="margin: 5px;">adicionar</button>
+    <!-- inicio cartao  -->
+    <template>
+        <div class="card CartaoPai"
+            style="width: fit-content; padding: 0; margin-left: 10px; margin-bottom: 10px; height: min-content;" id="">
+            <button type="button" class="btn-close" aria-label="Close" style="position: relative; margin: .375rem;"
+                onclick="fechar()"></button>
+            <div class="card-body" style="padding-bottom: 10px; padding-top: 0; width: 18rem;" id="">
+                <div class="input-group dropend Menu-cartao">
+                    <input type="text card-nome" class="form-control opacity-75 NomeChar" aria-label="Nome:"
+                        placeholder="Nome:" id="" required minlength="3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="false">Opções</button>
+                    <ul class="dropdown-menu dropdown-menu-end opacity-75">
+                        <li><a class="dropdown-item" onclick="saveSlots()"
+                                aria-label="Cartao e salvo baseado no nome, em caso de alteracao de nome ele ira criar outro slot">Salvar
+                                slot</a></li>
+                        <li>
+                            <div class="btn-group dropend slots" style="width: 100%;">
+                                <a type="button" class="btn btn-secondary dropdown-toggle dropdown-item"
+                                    data-bs-toggle="dropdown" aria-expanded="false" onclick="showSlot()">
+                                    Carregar slot
+                                </a>
+                                <ul class="dropdown-menu slot-menu"
+                                    style="max-width: 200px; max-height: 300px; overflow: auto;">
+                                    <!-- Dropdown menu links -->
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- <a class="dropdown-item" onclick="Carregar()">Carregar slot salvo</a> -->
+                        <li>
+                            <div class="btn-group dropend slots" style="width: 100%;">
+                                <a type="button" class="btn btn-secondary dropdown-toggle dropdown-item"
+                                    data-bs-toggle="dropdown" aria-expanded="false" onclick="excluirSlots()">
+                                    Excluir slot
+                                </a>
+                                <ul class="dropdown-menu slot-menu"
+                                    style="max-width: 200px; max-height: 300px; overflow: auto;">
+                                    <!-- Dropdown menu links -->
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="list-group list-group-flush Lobby" style="position: unset;">
+                    <!-- barra de vida visual -->
+                    <div style="margin-top: 5px; width: auto; color: white;" class="container-BarraN1">
+                        <div class="progress text-reset" role="progressbar" aria-label="Barra de Progresso"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 20px;">
+                            <!-- parte que contem a barra visual -->
+                            <div class="progress-bar overflow-visible text-reset BarraN1" tag id="Progresso 1"
+                                style="width: 100%; background-color: #DC3545;">
+                                100/100 100%
+                            </div>
+                            <!--parte da barra que mostra o que deveria-->
+                        </div>
+                    </div>
+                    <!-- fim barra de vida visual -->
+                    <!-- barra de Mana visual -->
+                    <div style="margin-top: 5px; width: auto; color: white;" class="container-BarraN3">
+                        <div class="progress text-reset" role="progressbar" aria-label="Barra de Progresso"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 20px;">
+                            <!-- parte que contem a barra visual -->
+                            <div class="progress-bar overflow-visible text-reset BarraN3" tag id="Progresso 3"
+                                style="width: 100%; background-color: #0DCAF0;">
+                                100/100 100%
+                            </div>
+                            <!--parte da barra que mostra o que deveria-->
+                        </div>
+                    </div>
+                    <!-- fim barra de Mana visual -->
+                    <!-- barra de stamina visual -->
+                    <div style="margin-top: 5px; width: auto; color: white;" class="container-BarraN5">
+                        <div class="progress text-reset" role="progressbar" aria-label="Barra de Progresso"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 20px;">
+                            <!-- parte que contem a barra visual -->
+                            <div class="progress-bar overflow-visible text-reset BarraN5" tag id="Progresso 5"
+                                style="width: 100%; background-color: #198754;">
+                                100/100 100%
+                            </div>
+                            <!--parte da barra que mostra o que deveria-->
+                        </div>
+                    </div>
+                    <!-- fim barra de stamina visual -->
+                    <!-- barra de Sanidade visual -->
+                    <div style="margin-top: 5px; width: auto; color: white;" class="container-BarraN7">
+                        <div class="progress text-reset" role="progressbar" aria-label="Barra de Progresso"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 20px;">
+                            <!-- parte que contem a barra visual -->
+                            <div class="progress-bar overflow-visible text-reset BarraN7" tag id=""
+                                style="width: 100%; background-color: #A000C8;">
+                                100/100 100%
+                            </div>
+                            <!--parte da barra que mostra o que deveria-->
+                        </div>
+                    </div>
+                    <!-- fim barra de Sanidade visual -->
+                    <!-- barra de Escudo visual -->
+                    <div style="margin-top: 5px; width: auto; color: white;" class="container-BarraN9">
+                        <div class="progress text-reset" role="progressbar" aria-label="Barra de Progresso"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 20px;">
+                            <!-- parte que contem a barra visual -->
+                            <div class="progress-bar overflow-visible text-reset BarraN9" tag id=""
+                                style="width: 100%; background-color: #D4AF37;">
+                                100/100 100%
+                            </div>
+                            <!--parte da barra que mostra o que deveria-->
+                        </div>
+                    </div>
+                    <!-- fim barra de Escudo visual -->
+                    <li class="list-group-item" style="padding: 0; margin-top: 5px;">
+                        <!-- separador de items apenas -->
+                    </li>
+                    <li class="list-group-item input-lobby" style="padding: 0;">
+                        <!-- controle de vida -->
+                        <div class="btn-group-sm input-group input-group-sm dropend container-Barra container-BarraN1"
+                            style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                            <input type="number" class="form-control input-Barra input-BarraN1" id="" placeholder="Vida"
+                                aria-label="botao onde algo e dado ou tirado" min="0">
+                            <!--parte do botao que deve pegar o valor e transformar direto na porcentagem-->
+                            <button class="btn btn-outline-secondary" type="button" onclick="diminuir(1)">Usar</button>
+                            <!--botao que subtrai a Mana-->
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="aumentar(1)">Ganhar</button>
+                            <button type="button"
+                                class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropend</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="SetarMax(1)">Usar valor como maximo</a>
+                                </li>
+                                <!-- Dropdown menu links -->
+                            </ul>
+                            <!-- o numero se refere a posicao na matriz 2d Personagem que essa barra vai ocupar e usar como lugar para guardar suas variaveis -->
+                        </div>
+                        <!--controle de vida vem ate aqui-->
+                        <!-- controle de Mana -->
+                        <div class="btn-group-sm input-group input-group-sm dropend container-Barra container-BarraN3"
+                            style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                            <input type="number" class="form-control input-Barra input-BarraN3" id="" placeholder="Mana"
+                                aria-label="botao onde algo e dado ou tirado" min="0">
+                            <!--parte do botao que deve pegar o valor e transformar direto na porcentagem-->
+                            <button class="btn btn-outline-secondary" type="button" onclick="diminuir(3)">Usar</button>
+                            <!--botao que subtrai a Mana-->
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="aumentar(3)">Ganhar</button>
+                            <button type="button"
+                                class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropend</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="SetarMax(3)">Usar valor como maximo</a>
+                                </li>
+                                <!-- Dropdown menu links -->
+                            </ul>
+                            <!-- o numero se refere a posicao na matriz 2d Personagem que essa barra vai ocupar e usar como lugar para guardar suas variaveis -->
+                        </div>
+                        <!--controle de Mana vem ate aqui-->
+                        <!-- controle de Stam -->
+                        <div class="btn-group-sm input-group input-group-sm dropend container-Barra container-BarraN5"
+                            style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                            <input type="number" class="form-control input-Barra input-BarraN5" id=""
+                                placeholder="Stamina" aria-label="botao onde algo e dado ou tirado" min="0">
+                            <!--parte do botao que deve pegar o valor e transformar direto na porcentagem-->
+                            <button class="btn btn-outline-secondary" type="button" onclick="diminuir(5)">Usar</button>
+                            <!--botao que subtrai a Mana-->
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="aumentar(5)">Ganhar</button>
+                            <button type="button"
+                                class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropend</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" onclick="SetarMax(5)">Usar valor como maximo</a>
+                                </li>
+                                <!-- Dropdown menu links -->
+                            </ul>
+                            <!-- o numero se refere a posicao na matriz 2d Personagem que essa barra vai ocupar e usar como lugar para guardar suas variaveis -->
+                        </div>
+                        <!--controle de Stam vem aqui-->
+                        <!-- controle de Sanidade -->
+                        <div class="btn-group-sm input-group input-group-sm dropend  container-BarraN7"
+                            style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                            <input type="number" class="form-control input-Barra input-BarraN7" id=""
+                                placeholder="Sanidade" aria-label="botao onde algo e dado ou tirado" min="0">
+                            <!--parte do botao que deve pegar o valor e transformar direto na porcentagem-->
+                            <button class="btn btn-outline-secondary" type="button" onclick="diminuir(7)">Usar</button>
+                            <!--botao que subtrai a Mana-->
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="aumentar(7)">Ganhar</button>
+                            <button type="button"
+                                class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropend</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" onclick="SetarMax(7)" id="teste">Usar valor como
+                                        maximo</a>
+                                </li>
+                                <!-- Dropdown menu links -->
+                            </ul>
+                            <!-- o numero se refere a posicao na matriz 2d Personagem que essa barra vai ocupar e usar como lugar para guardar suas variaveis -->
+                        </div>
+                        <!--controle de Sanidade vem ate aqui-->
+                        <!-- controle de Escudo -->
+                        <div class="btn-group-sm input-group input-group-sm dropend container-Barra container-BarraN9"
+                            style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                            <input type="number" class="form-control input-Barra input-BarraN9" id=""
+                                placeholder="Escudo" aria-label="botao onde algo e dado ou tirado" min="0">
+                            <!--parte do botao que deve pegar o valor e transformar direto na porcentagem-->
+                            <button class="btn btn-outline-secondary" type="button" onclick="diminuir(9)">Usar</button>
+                            <!--botao que subtrai a Mana-->
+                            <button class="btn btn-outline-secondary" type="button"
+                                onclick="aumentar(9)">Ganhar</button>
+                            <button type="button"
+                                class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropend</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" onclick="SetarMax(9)" id="teste">Usar valor como
+                                        maximo</a>
+                                </li>
+                                <!-- Dropdown menu links -->
+                            </ul>
+                            <!-- o numero se refere a posicao na matriz 2d Personagem que essa barra vai ocupar e usar como lugar para guardar suas variaveis -->
+                        </div>
+                        <!--controle de Escudo vem ate aqui-->
+                    </li>
+                    <li class="list-group-item caixa-Texto" style="padding: 0; margin-top: 5px;">
+                        <textarea class="Obs"
+                            style="width: 100%; min-height: 100px; field-sizing: content; resize: vertical;"
+                            id=""></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+    <!-- fim cartao  -->
+    <div style="margin: 0px; padding-left: 5px; padding: 0; width: 100%;" class="row container-fluid" id="zonaCartao">
+    </div>
+    <!-- script do cartao -->
+    <script>
+        // fechar o cartao
+        function fechar() {
+            x = dadFinder("CartaoPai");
+            x.remove();
+        }
+        // declarar a variavel que eu utilizo para fazer a matematica sem salvar
+        var Personagem = [
+        ];
+        // funcao que eu uso para adicionar cartoes pra que eu nao tenha que pre declarar eles
+        function criarSlot(cartao) {
+            Personagem.push([cartao.id, '100', '100', '100', '100', '100', '100', '100', '100', '100', '100', '']);
+        }
+        // funcao usada pra achar a coluna que um cartao esta usando na matriz 2d Personagem
+        function EstaAqui(array, item) {
+            for (i = 0; i < array.length; i++) {
+                if (array[i][0] == item) {
+                    return i;
+                }
+            }
+            criarSlot(item);
+            x = EstaAqui(array, item.id);
+            return x;
+        }
+        function showSlot() {
+            if (event.currentTarget.className.includes("show") == true) {
+                const carta = inputFinder("slots", "slot-menu");
+                b = Object.keys(localStorage);
+                var n = [];
+                var children = [];
+                k = 0;
+                for (let m = 0; m < b.length; m++) {
+                    if (b[m].includes("Slot") == true) {
+                        informacao = localStorage.getItem(b[m]).split('%20');
+                        //
+                        li = document.createElement("li");
+                        button = document.createElement("button");
+                        button.innerText = informacao[0];
+                        button.id = informacao[0];
+                        button.onclick = function () {
+                            carregarSlot(event.target.id);
+                        };
+                        button.className = "dropdown-item"
+                        li.appendChild(button);
+                        //
+                        children[k] = li;
+                        k++;
+                    }
+                }
+                carta.replaceChildren(...children);
+            }
+        }
+        function carregarSlot(onde) {
+            const cartao = dadFinder("CartaoPai");
+            let nome = inputFinder("Menu-cartao", "NomeChar");
+            let texto = childrenFinder(childrenFinder(inputFinder("card-body", "Lobby"), "caixa-Texto"), "Obs");
+            informacao = localStorage.getItem("Slot " + onde).split("%20");
+            nome.value = informacao[0];
+            texto.value = informacao[12];
+            barraCorrecao(cartao, informacao);
+        }
+        function barraCorrecao(cartao, informacao) {
+            var aux = [];
+            k = 1;
+            for (let i = 1; i < 11; i += 2) {
+                let barra = childrenFinder(childrenFinder(childrenFinder(inputFinder("card-body", "Lobby"), "container-BarraN" + i), "progress"), "BarraN" + i);
+                k += 2;
+                if (informacao[i + 2] == 0) {
+                    barra.innerText = "Não tem"
+                } else {
+                    barra.innerText = informacao[i + 1] + "/" + informacao[i + 2] + " " + Math.round(100 * (informacao[i + 1] / informacao[i + 2])) + "%";
+                }
+                barra.style.width = 100 * (informacao[i + 1] / informacao[i + 2]) + "%";
+            }
+            aux.push(cartao.id);
+            for (j = 2; j < 12; j++) {
+                aux.push(informacao[j]);
+            }
+            Personagem.push(aux);
+        }
+        function saveSlots() {
+            const cartao = dadFinder("CartaoPai");
+            const nome = inputFinder("Menu-cartao", "NomeChar");
+            const texto = childrenFinder(childrenFinder(inputFinder("card-body", "Lobby"), "caixa-Texto"), "Obs");
+            if (nome.value.length >= 3) {
+                x = EstaAqui(Personagem, cartao);
+                localStorage.setItem("Slot " + nome.value, nome.value + "%20" + Personagem[x][0] + "%20" + Personagem[x][1] + "%20" + Personagem[x][2] + "%20" + Personagem[x][3] + "%20" + Personagem[x][4] + "%20" + Personagem[x][5] + "%20" + Personagem[x][6] + "%20" + Personagem[x][7] + "%20" + Personagem[x][8] + "%20" + Personagem[x][9] + "%20" + Personagem[x][10] + "%20" + texto.value);
+                //nome / id / vida / vidaMax / mana / manaMax / stam / stamMax / san / sanMax / extra / extraMax / texto
+            } else {
+                alert("É necessario um nome de 3 ou mais caracteres para salvar um personagem")
+            }
+        }
+        // funcao usada pra definir cor, nome, e visibilidade das multiplas barras dentro dos cartoes
+        function Config(barra, Visibilidade) {
+            const cor = document.getElementById("color" + barra).value;
+            const collection = document.getElementsByClassName("" + barra);
+            const inputInput = document.getElementsByClassName("input-" + barra);
+            const inputNome = document.getElementById("Nome" + barra);
+            if (cor != "" || cor != undefined || cor != null) {
+                for (let i = 0; i < collection.length; i++) {
+                    collection[i].style.backgroundColor = cor;
+                }
+                localStorage.setItem("Cor" + barra, cor);
+            }
+            if (inputNome.value != "" && inputNome.value != null && inputNome.value != undefined) {
+                for (let i = 0; i < collection.length; i++) {
+                    //  collection[i].innerText = inputNome.value;
+                    inputInput[i].placeholder = inputNome.value;
+                }
+                localStorage.setItem("Nome" + barra, inputNome.value);
+            }
+            const AllContainers = document.getElementsByClassName("container-" + barra);
+            if (Visibilidade == 'true') {
+                for (i = 0; i < AllContainers.length; i++) {
+                    if (AllContainers[i].hidden == false) {
+                        AllContainers[i].hidden = true;
+                        localStorage.setItem("Container-" + barra, true);
+                    } else {
+                        AllContainers[i].hidden = false;
+                        localStorage.setItem("Container-" + barra, false);
+                    }
+                }
+            }
+        }
+        function childrenFinder(lugar, tipo) {
+            for (let x = 0; x < lugar.children.length; ++x) {
+                if (lugar.children[x].className.includes(tipo) == true) {
+                    y = lugar.children[x];
+                    return y;
+                }
+            }
+        }
+        // diminuir valor das barras e variaveis
+        function diminuir(DadoMatriz) {
+            cartao = dadFinder("CartaoPai");
+            nome = childrenFinder(childrenFinder(childrenFinder(cartao, "card-body"), "Menu-cartao"), "Card-nome");
+            x = EstaAqui(Personagem, cartao);
+            const input = inputFinder('container-Barra', 'input-Barra');
+            const barraProgresso = inputFinder('Lobby', 'container-BarraN' + DadoMatriz).firstElementChild.firstElementChild;
+            if (Personagem[x][DadoMatriz + 1] == 0) {
+            } else {
+                Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz] - input.value;
+                p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                barraProgresso.style.width = p + '%';
+                if (Personagem[x][DadoMatriz] < 0) {
+                    Personagem[x][DadoMatriz] = 0;
+                    p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                    barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                    barraProgresso.style.width = p + '%';
+                    input.value = "";
+                }
+                if (Personagem[x][DadoMatriz] > Personagem[x][DadoMatriz + 1]) {
+                    Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz + 1];
+                    p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                    barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                    barraProgresso.style.width = p + '%';
+                    input.value = "";
+                }
+                input.value = "";
+            }
+        }
+        // aumentar valor das barras e variaveis
+        function aumentar(DadoMatriz) {
+            cartao = dadFinder("CartaoPai");
+            nome = childrenFinder(childrenFinder(childrenFinder(cartao, "card-body"), "Menu-cartao"), "Card-nome");
+            x = EstaAqui(Personagem, cartao);
+            const input = inputFinder('container-Barra', 'input-Barra');
+            const barraProgresso = inputFinder('Lobby', 'container-BarraN' + DadoMatriz).firstElementChild.firstElementChild;
+            if (Personagem[x][DadoMatriz + 1] == 0) {
+            } else {
+                Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz] + + input.value;
+                p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                barraProgresso.style.width = p + '%';
+                if (Personagem[x][DadoMatriz] < 0) {
+                    Personagem[x][DadoMatriz] = 0;
+                    p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                    barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                    barraProgresso.style.width = p + '%';
+                    input.value = "";
+                }
+                if (Personagem[x][DadoMatriz] > Personagem[x][DadoMatriz + 1]) {
+                    Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz + 1];
+                    p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                    barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                    barraProgresso.style.width = p + '%';
+                    input.value = "";
+                }
+                input.value = "";
+            }
+        }
+        // setar o valor maximo das barras e variaveis
+        function SetarMax(DadoMatriz) {
+            cartao = dadFinder("CartaoPai");
+            nome = childrenFinder(childrenFinder(childrenFinder(cartao, "card-body"), "Menu-cartao"), "Card-nome");
+            x = EstaAqui(Personagem, cartao);
+            const input = inputFinder('container-Barra', 'input-Barra');
+            const barraProgresso = inputFinder('Lobby', 'container-BarraN' + DadoMatriz).firstElementChild.firstElementChild;
+            if (input.value > 0) {
+                Personagem[x][DadoMatriz + 1] = 0 + + input.value;
+                Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz + 1];
+                p = 100 * (Personagem[x][DadoMatriz] / Personagem[x][DadoMatriz + 1]);
+                barraProgresso.innerText = Personagem[x][DadoMatriz] + "/" + Personagem[x][DadoMatriz + 1] + " " + Math.round(p) + "%";
+                barraProgresso.style.width = p + '%';
+            } else if (input.value == 0 || input.value == "" && x != null || x != -1) {
+                Personagem[x][DadoMatriz + 1] = 0;
+                Personagem[x][DadoMatriz] = Personagem[x][DadoMatriz + 1];
+                p = 100;
+                barraProgresso.innerText = "Não tem ";//colocar uma var do nome da barra 
+                barraProgresso.style.width = p + '%';
+            }
+            input.value = "";
+        }
+        function excluirSlots() {
+            if (event.currentTarget.className.includes("show") == true) {
+                const carta = inputFinder("slots", "slot-menu");
+                b = Object.keys(localStorage);
+                var n = [];
+                var children = [];
+                k = 0;
+                for (let m = 0; m < b.length; m++) {
+                    if (b[m].includes("Slot") == true) {
+                        informacao = localStorage.getItem(b[m]).split('%20');
+                        //
+                        li = document.createElement("li");
+                        button = document.createElement("button");
+                        button.innerText = informacao[0];
+                        button.id = informacao[0];
+                        button.onclick = function () {
+                            localStorage.removeItem("Slot " + event.target.id);
+                            event.target.parentNode.remove();
+                        };
+                        button.className = "dropdown-item"
+                        li.appendChild(button);
+                        //
+                        children[k] = li;
+                        k++;
+                    }
+                }
+                carta.replaceChildren(...children);
+            }
+        }
+        let IdCartao = 0;
+        function CriarId() {
+            ++IdCartao;
+            return IdCartao;
+        }
+        function showContent() {
+            let temp = document.getElementsByTagName("template")[0];
+            let clon = temp.content.cloneNode(true);
+            clon.firstElementChild.attributes.id.nodeValue = CriarId();
+            let lugar = document.getElementById("zonaCartao");
+            lugar.appendChild(clon);
+            loadConfig()
+        }
+        function dadFinder(tagParente) {
+            alvo = event.target;
+            for (let el = alvo; el && el.parentNode; el = el.parentNode) {
+                if (el.className.includes(tagParente) == true) {
+                    return el;
+                }
+            }
+            return null
+        }
+        function inputFinder(parente, tipo) {
+            container = dadFinder(parente);
+            for (let x = 0; x < this.container.children.length; ++x) {
+                if (this.container.children[x].className.includes(tipo) == true) {
+                    y = this.container.children[x];
+                    return y;
+                }
+            }
+        }
+        function deletar() {
+            sessionStorage.clear();
+            localStorage.clear();
+        }
+        function loadConfig() {
+            for (i = 1; i <= 9; i += 2) {
+                const collection = document.getElementsByClassName("BarraN" + i);
+                const inputInput = document.getElementsByClassName("input-BarraN" + i);
+                if (localStorage.getItem("CorBarraN" + i) != null) {
+                    document.getElementById("colorBarraN" + i).value = localStorage.getItem("CorBarraN" + i);
+                }
+                for (let x = 0; x < collection.length; x++) {
+                    if (localStorage.getItem("CorBarraN" + i) != null) {
+                        collection[x].style.backgroundColor = localStorage.getItem("CorBarraN" + i);
+                        document.getElementById("colorBarraN" + i).value = localStorage.getItem("CorBarraN" + i);
+                    }
+                    if (localStorage.getItem("NomeBarraN" + i) != null) {
+                        inputInput[x].placeholder = localStorage.getItem("NomeBarraN" + i);
+                    }
+                }
+                // if (localStorage.getItem("colorBarraN" + i) != null) {
+                //     document.getElementById("colorBarraN" + i).value = localStorage.getItem("CorBarraN" + i);
+                // }
+            }
+            for (i = 1; i <= 9; i += 2) {//alterar esse valor pra incrementar a quantidade de barras por cartao
+                if (localStorage.getItem("Container-BarraN" + i) != null) {
+                    const AllContainers = document.getElementsByClassName("container-BarraN" + i);
+                    for (x = 0; x < AllContainers.length; x++) {
+                        if (localStorage.getItem("Container-BarraN" + i) == 'true') {
+                            AllContainers[x].hidden = true;
+                        } else {
+                            AllContainers[x].hidden = false;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- fim do script do cartao -->
+</body>
+
+</html>
